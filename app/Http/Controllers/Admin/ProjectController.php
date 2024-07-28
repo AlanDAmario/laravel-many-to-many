@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str; //importazione sluge
 
@@ -55,6 +56,8 @@ class ProjectController extends Controller
         // Valida i dati della richiesta usando la classe StoreProjectRequest
         $data = $request->validated();
 
+        $current_user= Auth::user()->id;
+
         // Crea uno slug basato sul titolo fornito
         $data['slug'] = Str::of($data['title'])->slug('-');
 
@@ -83,6 +86,7 @@ class ProjectController extends Controller
             $project->type_id = $data['type_id'];
         }
 
+        $project->user_id= $current_user;
         // Salva il nuovo progetto nel database
         $project->save();
 

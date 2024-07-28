@@ -15,4 +15,9 @@ class Project extends Model
         // TYPE HA SOLO un PROJECT ASSOCIATO
         return $this->belongsTo(Type::class);
     }
+
+    public function user(){
+
+        return $this->belongsTo(User::class);
+    }
 }

@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th scope="col" class="col-1">Status</th>
+                        <th scope="col" class="col-1">User</th>
                         <th scope="col" class="col-5">Titolo</th>
                         <th scope="col" class="col-4">Slug</th>
                         <th scope="col" class="col-6">
@@ -41,6 +42,7 @@
                     @foreach ($projects as $project)
                         <tr>
                             <th>0</th>
+                            <th>{{$project->user?->name?: 'None'}}</th>
                             <th>{{ $project->title }}</th>
                             <td>{{ $project->slug }}</td>
                             <td>
